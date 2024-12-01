@@ -13,7 +13,7 @@ import com.mobile.programming.todo.databinding.FragmentAddTaskBinding
 class AddTaskFragment : Fragment() {
 
     private lateinit var binding: FragmentAddTaskBinding
-    private val taskViewModel: TasksViewModel by viewModels()
+    private val taskViewModel: TaskViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

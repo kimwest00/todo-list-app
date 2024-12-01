@@ -14,7 +14,7 @@ import com.mobile.programming.todo.databinding.FragmentTaskListBinding
 class TaskListFragment : Fragment() {
 
     private lateinit var binding: FragmentTaskListBinding
-    private val taskViewModel: TasksViewModel by viewModels()
+    private val taskViewModel: TaskViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

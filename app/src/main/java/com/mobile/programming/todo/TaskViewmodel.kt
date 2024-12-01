@@ -8,7 +8,7 @@ import com.mobile.programming.todo.data.Task
 import com.mobile.programming.todo.data.TaskDatabase
 import kotlinx.coroutines.launch
 
-class TasksViewModel(application: Application) : AndroidViewModel(application) {
+class TaskViewModel(application: Application) : AndroidViewModel(application) {
 
     private val taskDao = TaskDatabase.getDatabase(application).taskDao()
     val allTasks: LiveData<List<Task>> = taskDao.getAllTasks()

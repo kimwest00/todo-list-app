@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/addTaskFragment"
-        android:name="com.mobile.programming.todo.AddTaskFragment"
+        android:name="com.mobile.programming.todo.TaskListFragment"
         android:label="Add Task"
         tools:layout="@layout/fragment_add_task" >
         <action

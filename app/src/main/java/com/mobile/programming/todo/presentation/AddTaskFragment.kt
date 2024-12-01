@@ -1,4 +1,4 @@
-package com.mobile.programming.todo
+package com.mobile.programming.todo.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.mobile.programming.todo.R
 import com.mobile.programming.todo.data.Task
 import com.mobile.programming.todo.databinding.FragmentAddTaskBinding
 

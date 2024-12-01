@@ -1,4 +1,4 @@
-package com.mobile.programming.todo
+package com.mobile.programming.todo.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.mobile.programming.todo.R
 import com.mobile.programming.todo.databinding.FragmentTaskListBinding
 
 class TaskListFragment : Fragment() {

@@ -46,8 +46,16 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+    //Room db
+    implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.room.compiler)
+
+    //error annotations-12.0.jar (com.intellij:annotations:12.0)와 annotations-23.0.0.jar (org.jetbrains:annotations:23.0.0
+    implementation(libs.annotations)
+
+    configurations.all {
+        exclude(group = "com.intellij", module = "annotations")
+    }
 }

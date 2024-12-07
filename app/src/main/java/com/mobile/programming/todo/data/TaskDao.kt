@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface TaskDao {
@@ -17,4 +18,7 @@ interface TaskDao {
 
     @Query("DELETE FROM task_table WHERE id = :taskId")
     suspend fun delete(taskId: Int)
+
+    @Update
+    suspend fun update(task: Task)
 }

@@ -2,8 +2,10 @@ package com.mobile.programming.todo.presentation
 
 import android.graphics.Paint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +13,8 @@ import com.mobile.programming.todo.data.Task
 import com.mobile.programming.todo.databinding.ItemTaskBinding
 
 class TaskAdapter(
-    private val onTaskCheckedChange: (Task) -> Unit // 체크박스 상태 변경을 처리하기 위한 콜백
+    private val onTaskCheckedChange: (Task) -> Unit, // Callback for updating checkbox state
+    private val onTaskDelete: (Task) -> Unit,// Callback for updating delete
 ) : ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -21,6 +24,18 @@ class TaskAdapter(
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item, onTaskCheckedChange)
+        holder.itemView.setOnLongClickListener{
+            AlertDialog.Builder(it.context)
+                .setTitle("Delete Task")
+                .setMessage("Are you sure you want to delete this task?")
+                .setPositiveButton("Yes") { _, _ ->
+                    onTaskDelete(item)
+                }
+                .setNegativeButton("No", null)
+                .show()
+            true
+        }
+
     }
 
     class TaskViewHolder private constructor(private val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -28,6 +43,13 @@ class TaskAdapter(
         fun bind(item: Task, onTaskCheckedChange: (Task) -> Unit) {
             binding.taskTitle.text = item.title
             binding.taskDescription.text = item.description
+
+            if (item.imgUri != null) {
+                binding.ivTask.setImageBitmap(item.imgUri)
+                binding.ivTask.visibility = View.VISIBLE
+            } else {
+                binding.ivTask.visibility = View.GONE
+            }
 
             // 체크박스 상태 반영
             binding.taskCheckBox.isChecked = item.isCompleted

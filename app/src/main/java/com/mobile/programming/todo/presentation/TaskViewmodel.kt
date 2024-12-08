@@ -32,7 +32,9 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
         insertResult = asyncInsertTask(task)
         return insertResult.value as List<Long>
     }
-    // Task 추가
+
+    // insert task
+    // use couroutineIOScope
     private suspend fun asyncInsertTask(task: Task): MutableLiveData<List<Long>> {
         val insertReturn = coroutineIOScope.async(IO) {
             return@async taskDao.insert(task)
@@ -43,7 +45,8 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
         }.await()
     }
 
-    // Task 삭제
+    // delete task
+    // use viewmodelScope
     fun delete(taskId: Int) {
         viewModelScope.launch {
             taskDao.delete(taskId)

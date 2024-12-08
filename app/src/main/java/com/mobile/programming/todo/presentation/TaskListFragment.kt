@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobile.programming.todo.R
-import com.mobile.programming.todo.data.Task
 import com.mobile.programming.todo.databinding.FragmentTaskListBinding
 
 class TaskListFragment : Fragment() {
@@ -29,14 +28,19 @@ class TaskListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Adapter 초기화 및 설정
-        val adapter = TaskAdapter { task ->
-            // Task의 완료 상태를 업데이트
+        // init recyclerview adapter
+        val adapter = TaskAdapter(
+            onTaskCheckedChange = { task ->
             val updatedTask = task.copy(isCompleted = !task.isCompleted)
             taskViewModel.update(updatedTask)
-        }
+            },
+            onTaskDelete = { task ->
+                taskViewModel.delete(task.id)
+            },
+        )
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter
+
 
         // ViewModel의 LiveData를 관찰
         taskViewModel.allTasks.observe(viewLifecycleOwner, Observer { tasks ->

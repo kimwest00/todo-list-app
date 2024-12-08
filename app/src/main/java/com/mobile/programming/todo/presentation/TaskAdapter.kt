@@ -28,6 +28,12 @@ class TaskAdapter(
         fun bind(item: Task, onTaskCheckedChange: (Task) -> Unit) {
             binding.taskTitle.text = item.title
             binding.taskDescription.text = item.description
+            print("imgrUL: ${item.imgUri}")
+            if (item.imgUri != null) {
+                binding.ivTask.setImageBitmap(item.imgUri)
+            } else {
+                binding.ivTask.visibility = android.view.View.GONE
+            }
 
             // 체크박스 상태 반영
             binding.taskCheckBox.isChecked = item.isCompleted

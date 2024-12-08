@@ -31,16 +31,21 @@ class AddTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setView()
+        observeData()
 
-        binding.ivArtist.setOnClickListener {
+    }
+    private fun setView(){
+        binding.ivTask.setOnClickListener {
             getContent.launch("image/*")
         }
         binding.btnSave.setOnClickListener {
             val task = Task(
                 title = binding.editTextTaskTitle.text.toString(),
-                description = binding.editTextTaskDescription.text.toString()
+                description = binding.editTextTaskDescription.text.toString(),
+                imgUri = bitmap
             )
-            taskViewModel.insert(task)
+            taskViewModel.insertTask(task)
             findNavController().navigate(R.id.action_addTaskFragment_to_taskListFragment)
         }
     }
@@ -52,7 +57,7 @@ class AddTaskFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
                 Log.d("ADD", "uri: $uri")
-                binding.ivArtist.setImageURI(uri)
+                binding.ivTask.setImageURI(uri)
                 context?.let { it1 ->
                     var tmpBitmap = convertUriToBitmap(uri, it1)
                     tmpBitmap?.let { it2 -> bitmap = it2 }
@@ -60,4 +65,11 @@ class AddTaskFragment : Fragment() {
 
             }
         }
+
+    private fun observeData() {
+        taskViewModel.insertResult.observe(viewLifecycleOwner) {
+            insertValue = it
+        }
+
+    }
 }

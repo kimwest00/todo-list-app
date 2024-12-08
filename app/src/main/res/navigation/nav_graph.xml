@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/taskListFragment"
         android:name="com.mobile.programming.todo.presentation.TaskListFragment"
-        android:label="Task List"
+        android:label="MP-4 Task List"
         tools:layout="@layout/fragment_task_list" >
         <action
             android:id="@+id/action_taskListFragment_to_addTaskFragment"

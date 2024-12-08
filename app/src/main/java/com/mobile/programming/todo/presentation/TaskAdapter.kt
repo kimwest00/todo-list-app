@@ -2,6 +2,7 @@ package com.mobile.programming.todo.presentation
 
 import android.graphics.Paint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.appcompat.app.AlertDialog
@@ -45,8 +46,9 @@ class TaskAdapter(
 
             if (item.imgUri != null) {
                 binding.ivTask.setImageBitmap(item.imgUri)
+                binding.ivTask.visibility = View.VISIBLE
             } else {
-                binding.ivTask.visibility = android.view.View.GONE
+                binding.ivTask.visibility = View.GONE
             }
 
             // 체크박스 상태 반영

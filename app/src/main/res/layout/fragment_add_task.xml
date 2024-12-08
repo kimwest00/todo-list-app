@@ -12,7 +12,7 @@
         android:id="@+id/editTextTaskTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-
+        android:hint="Task title"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

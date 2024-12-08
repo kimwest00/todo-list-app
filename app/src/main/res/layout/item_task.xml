@@ -5,8 +5,6 @@
     android:layout_height="wrap_content"
     android:padding="16dp"
     android:background="@drawable/item_bg"
-    android:clickable="true"
-    android:focusable="true"
     android:layout_marginVertical="8dp">
     <!-- CheckBox -->
     <CheckBox

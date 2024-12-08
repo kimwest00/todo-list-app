@@ -31,8 +31,7 @@ class TaskListFragment : Fragment() {
         // init recyclerview adapter
         val adapter = TaskAdapter(
             onTaskCheckedChange = { task ->
-            val updatedTask = task.copy(isCompleted = !task.isCompleted)
-            taskViewModel.update(updatedTask)
+                taskViewModel.update(task)
             },
             onTaskDelete = { task ->
                 taskViewModel.delete(task.id)
